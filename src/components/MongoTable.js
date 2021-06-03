@@ -7,32 +7,82 @@ export default class MongoTable extends React.Component
         super(props);
         this.state ={
             users: [],
-            msg : '',
-            data : {
-                name : '',
-                city : ''
-            }
+            data: {
+                name:'',
+                city: ''
+            },
+           Name:'',
+           City:''
+
         }
         //event bind
+        
     }
+   
     componentDidMount(){
         axios.get("http://localhost:3001/books")
         .then(res => {
             this.setState({
                 users: res.data,
-                msg: res.status
+                msg: res.status,
+               
             })
         })
     }
+    DeleteClick(_id,e) {
+        axios.delete(`http://localhost:3001/books/${_id}`)
+        .then(res => {
+          console.log(res.data);
+        })
+        alert("Data deleted");
+
+        window.location.reload () //for refresh
+    }
+
+    EditClick(_id,e){
+        console.log(_id)
+        axios.get(`http://localhost:3001/books/${_id}`)
+        .then(res => {
+            this.setState({
+               Name:res.data.name,
+               City:res.data.city
+            })
+        })
+
+        document.getElementById("hideTr").hidden=false;
+    }
+
+    SaveClick(_id,e){
+        const data = {
+            name: this.state.Name,
+            city: this.state.City
+        }
+
+        axios.patch(`http://localhost:3001/books/${_id}`,data)
+        .then(res => {
+          console.log(res.data);
+        })
+        alert("Updated");
+
+        window.location.reload ()
+
+    }
+
+    
 
     render(){
         return(
     <>
            <table className="table table-hover">
-          <thead>
+          <thead> 
             <tr>
-              <th><i className="fa fa-user"></i> Name</th>
-              <th><i className="fa fa-home"></i> City</th>
+              <th><i className="fa fa-user hideinput"></i> Name</th>
+              <th><i className="fa fa-home hideinput"></i> City</th>
+              <th><i className="fa fa-star"></i>Operations</th>
+            </tr>
+            <tr hidden id="hideTr">
+                <td><input value={this.state.Name} onChange={ (e) => this.setState({Name:e.target.value})}></input></td>
+                <td><input value={this.state.City} onChange={ (e) => this.setState({City:e.target.value})}></input></td>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +91,13 @@ export default class MongoTable extends React.Component
                  <tr key={user._id}>
                    <td>{user.name}</td>
                    <td>{user.city}</td>
+                   <td> 
+                       <button onClick={(e) => this.EditClick(user._id,e)} className="btn btn-warning button-M">Edit</button>
+                    
+                       <submit   onClick={(e) => this.SaveClick(user._id,e)} className="btn btn-success button-M">Save Edit</submit>
+                  
+                       <button onClick={(e) => this.DeleteClick(user._id,e)} className="btn btn-danger button-M">Delete</button> 
+                   </td>
                  </tr>
                 )
              }

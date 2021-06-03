@@ -32,7 +32,6 @@ export default class Mongoform extends React.Component
      })
     }
     SubmitClick = event => {
-       
        const data = {
          name: this.state.data.name,
          city: this.state.data.city
@@ -48,16 +47,16 @@ export default class Mongoform extends React.Component
     render(){
         return(
     <>
-        <h3>Add User Data</h3>
-        <form onSubmit={this.SubmitClick} className="form">
+        <h3 id="head">Add User details</h3>
+        <form onSubmit={this.SubmitClick} className="">
           <div>
             <dl>
               <dt className="form-group">Name</dt>
-              <dd><input type="text" className="form-control-lg" onChange={this.NameChanged} /></dd>
+              <dd><input autoFocus type="text" className="form-control" onChange={this.NameChanged} required /></dd>
               <dt>City</dt>
-              <dd><input type="text" className="form-control-lg" onChange={this.CityChanged} /></dd>
+              <dd><input  type="text" className="form-control" onChange={this.CityChanged} required/></dd>
             </dl>
-            <button  className="btn btn-block btn-primary">Add</button>
+            <button   className="btn btn-block btn-primary">Add</button>
             <br/>
           </div>
         </form>

@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import MongoTable from './components/MongoTable';
 import Mongoform from './components/Form';
