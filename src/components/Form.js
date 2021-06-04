@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-export default class Mongoform extends React.Component
+export default class form extends React.Component
 {
     constructor(props){
         super(props);

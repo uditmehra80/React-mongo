@@ -94,7 +94,7 @@ export default class MongoTable extends React.Component
                    <td> 
                        <button onClick={(e) => this.EditClick(user._id,e)} className="btn btn-warning button-M">Edit</button>
                     
-                       <submit   onClick={(e) => this.SaveClick(user._id,e)} className="btn btn-success button-M">Save Edit</submit>
+                       <button   onClick={(e) => this.SaveClick(user._id,e)} className="btn btn-success button-M">Save Edit</button>
                   
                        <button onClick={(e) => this.DeleteClick(user._id,e)} className="btn btn-danger button-M">Delete</button> 
                    </td>
