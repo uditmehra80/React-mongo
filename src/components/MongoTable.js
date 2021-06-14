@@ -32,10 +32,23 @@ export default class MongoTable extends React.Component
             console.log(err)
         })
     }
+    componentDidUpdate(){
+        axios.get("http://localhost:3001/booksall")
+        .then(res => {
+            this.setState({
+                users: res.data,
+                msg: res.status,
+               
+            })
+        })
+        .catch((err) =>{
+            console.log(err)
+        })
+    }
     
     
     DeleteClick(_id,e) {
-        axios.delete(`http://localhost:3001/books/${_id}`)
+        axios.delete(`http://localhost:3001/books/${_id}`,{})
         .then(res => {
           console.log(res.data);
         })
@@ -43,7 +56,7 @@ export default class MongoTable extends React.Component
             console.log(err)
         })
         alert("Data deleted");
-        window.location.reload () //for refresh
+      //  window.location.reload () //for refresh
     }
 
     EditClick(_id,e){
@@ -77,8 +90,8 @@ export default class MongoTable extends React.Component
             console.log(err)
         })
        // alert("Updated");
-
-       window.location.reload ()
+       document.getElementById("hideTr").hidden=true;
+      // window.location.reload ()
 
     }
 
