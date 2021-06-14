@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import axios from 'axios';
 
 export default class MongoTable extends React.Component
@@ -28,14 +28,21 @@ export default class MongoTable extends React.Component
                
             })
         })
+        .catch((err) =>{
+            console.log(err)
+        })
     }
+    
+    
     DeleteClick(_id,e) {
         axios.delete(`http://localhost:3001/books/${_id}`)
         .then(res => {
           console.log(res.data);
         })
+        .catch((err) =>{
+            console.log(err)
+        })
         alert("Data deleted");
-
         window.location.reload () //for refresh
     }
 
@@ -48,6 +55,10 @@ export default class MongoTable extends React.Component
                City:res.data.city
             })
         })
+        .catch((err) =>{
+            console.log(err)
+        })
+        
 
         document.getElementById("hideTr").hidden=false;
     }
@@ -62,9 +73,12 @@ export default class MongoTable extends React.Component
         .then(res => {
           console.log(res.data);
         })
-        alert("Updated");
+        .catch((err) =>{
+            console.log(err)
+        })
+       // alert("Updated");
 
-        window.location.reload ()
+       window.location.reload ()
 
     }
 
