@@ -1,4 +1,3 @@
-
 import './App.css';
 import MongoTable from './components/MongoTable';
 import Form from './components/Form'

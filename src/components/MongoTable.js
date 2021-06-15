@@ -110,6 +110,7 @@ export default class MongoTable extends React.Component
             <tr hidden id="hideTr">
                 <td><input value={this.state.Name} onChange={ (e) => this.setState({Name:e.target.value})}></input></td>
                 <td><input value={this.state.City} onChange={ (e) => this.setState({City:e.target.value})}></input></td>
+
             </tr>
           </thead>
           <tbody>

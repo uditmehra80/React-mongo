@@ -44,7 +44,6 @@ app.get('/books',function(req,res){
 
 app.get('/booksall',async(req,res) => {
     try{
-        console.log('getting books');
          Book.find({})
         .exec(function(err,books){
             res.send(books);
